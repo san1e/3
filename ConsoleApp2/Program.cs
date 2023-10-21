@@ -76,6 +76,7 @@ namespace ConsoleApp2
                 }
             }
 
+
             if (validFileCount > 0)
             {
                 int average = totalProduct / validFileCount;
