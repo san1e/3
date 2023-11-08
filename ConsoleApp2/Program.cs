@@ -9,15 +9,22 @@ namespace ConsoleApp2
 {
     internal class Program
     {
+        static void CreateFileIfNotExists(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                }
+            }
+        }
         static void Main(string[] args)
         {
-            string[] files =
-               {
-            "10.txt", "11.txt", "12.txt", "13.txt", "14.txt", "15.txt",
-            "16.txt", "17.txt", "18.txt", "19.txt", "20.txt", "21.txt",
-            "22.txt", "23.txt", "24.txt", "25.txt", "26.txt", "27.txt",
-            "28.txt", "29.txt"
-        };
+            for (int i = 10; i <= 29; i++)
+            {
+                string fileName = i + ".txt";
+                CreateFileIfNotExists(fileName);
+            }
 
             int totalProduct = 0;
             int validFileCount = 0;
@@ -29,14 +36,15 @@ namespace ConsoleApp2
             using (StreamWriter badDataWriter = new StreamWriter(badData))
             using (StreamWriter overflowWriter = new StreamWriter(overflow))
             {
-                foreach (string file in files)
+                for (int i = 10; i <= 29; i++)
                 {
+                    string file = i + ".txt";
                     try
                     {
                         using (StreamReader reader = new StreamReader(file))
                         {
                             int product = 1;
-                            for (int i = 1; i <= 2; i++)
+                            for (int j = 1; j <= 2; j++)
                             {
                                 string line = reader.ReadLine();
                                 if (line == null)
@@ -86,7 +94,8 @@ namespace ConsoleApp2
             {
                 Console.WriteLine("No valid files found.");
             }
+            Console.ReadKey();
         }
     }
-    }
+    
 }
